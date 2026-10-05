@@ -1,5 +1,7 @@
 # Laravel Task Management REST API
 
+![Tests](https://github.com/ahsanhafeez1122-ship-it/laravel-task-management-api/actions/workflows/tests.yml/badge.svg)
+
 A multi-user REST API for managing projects and tasks — built with Laravel, MySQL, and Sanctum token authentication.
 
 ## Features
@@ -53,6 +55,14 @@ $request->user()->projects()->findOrFail($id);
 ```
 
 Tasks are similarly scoped through their parent project's ownership (`whereHas('project', ...)`), since a task doesn't have its own `user_id` column.
+
+## Testing
+
+Feature tests specifically verify the ownership rules — that a user cannot view, modify, or create a task inside another user's project. These run automatically on every push via GitHub Actions.
+
+```bash
+php artisan test
+```
 
 ## Setup
 
